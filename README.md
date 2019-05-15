@@ -59,35 +59,34 @@ php_fpm_log_level: notice
 # PHP FPM pool configuration
 #
 
-# List of php fpm pools to be added
-php_fpm_pools: []
-# Example pool item that can be used as a template
-#  - name: poolname
-#    filename: tld.pool.conf
-#    user: user
-#    group: group
-#    listen:
-#      address: "/run/php/php-{{ php_version }}-fpm-kernel.sock"
-#      backlog: 511
-#      owner: "{{ php_user_group }}"
-#      group: "{{ php_user_group }}"
-#      mode: "0660"
-#      allowed_clients: 127.0.0.1
-#    pm:
-#      mode: dynamic
-#      max_children: 10
-#      start_servers: 3 min_spare_servers + (max_spare_servers - min_spare_servers) / 2
-#      min_spare_servers: 1
-#      max_spare_servers: 3
-#      process_idle_timeout: 10s
-#      max_requests: 0
-#    env_vars: |
-#      ;env[HOSTNAME] = $HOSTNAME
-#      ;env[PATH] = /usr/local/bin:/usr/bin:/bin
-#      ;env[TMP] = /tmp
-#      ;env[TMPDIR] = /tmp
-#      ;env[TEMP] = /tmp
-#      :env[APPLICATION_ENV] = production
+# List of php fpm pools to be added with an example pool item
+php_fpm_pools:
+  - name: poolname
+    filename: tld.pool.conf
+    user: user
+    group: group
+    listen:
+      address: "/run/php/php-{{ php_version }}-fpm-poolname.sock"
+      backlog: 511
+      owner: "{{ php_user_group }}"
+      group: "{{ php_user_group }}"
+      mode: "0660"
+      allowed_clients: 127.0.0.1
+    pm:
+      mode: dynamic
+      max_children: 10
+      start_servers: 3 min_spare_servers + (max_spare_servers - min_spare_servers) / 2
+      min_spare_servers: 1
+      max_spare_servers: 3
+      process_idle_timeout: 10s
+      max_requests: 0
+    env_vars: |
+      ;env[HOSTNAME] = $HOSTNAME
+      ;env[PATH] = /usr/local/bin:/usr/bin:/bin
+      ;env[TMP] = /tmp
+      ;env[TMPDIR] = /tmp
+      ;env[TEMP] = /tmp
+      :env[APPLICATION_ENV] = production
 
 #
 # PHP ini basic settings

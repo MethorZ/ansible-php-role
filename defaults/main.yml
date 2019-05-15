@@ -55,7 +55,7 @@ php_fpm_pools: []
 #    user: user
 #    group: group
 #    listen:
-#      address: "/run/php/php-{{ php_version }}-fpm-kernel.sock"
+#      address: "/run/php/php-{{ php_version }}-fpm-poolname.sock"
 #      backlog: 511
 #      owner: "{{ php_user_group }}"
 #      group: "{{ php_user_group }}"
