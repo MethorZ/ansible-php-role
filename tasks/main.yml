@@ -1,0 +1,17 @@
+---
+#
+# Import variable definitions and defaults
+#
+- name: IMPORT_TASKS | Setup Variable definitions / defaults
+  import_tasks: setup-variables.yml
+
+#
+# Setup the OS based on family
+#
+- name: IMPORT_TASKS | Setup PHP for OS
+  import_tasks: "setup-Debian.yml"
+  when: php_fpm_enabled and ansible_facts['os_family'] == 'Debian'
+
+- name: IMPORT_TASKS | Configure PHP FPM
+  import_tasks: configure-php.yml
+  when: php_fpm_enabled

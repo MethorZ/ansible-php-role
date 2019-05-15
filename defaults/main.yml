@@ -1,16 +1,4 @@
-Role Name
-=========
-
-Ansible role to manage PHP FPM for Debian. Supports multiple pool configurations
-
-Requirements
-------------
-
-None
-
-Role Variables
---------------
-```YAML
+---
 #
 # PHP Configuration
 #
@@ -171,28 +159,3 @@ php_opcache_consistency_checks: 0
 php_opcache_force_restart_timeout: 180
 php_opcache_error_log:
 php_opcache_log_verbosity_level: 1
-```
-
-Dependencies
-------------
-
-None
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: ansible-php-role }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-MethorZ

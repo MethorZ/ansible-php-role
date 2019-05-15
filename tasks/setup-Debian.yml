@@ -1,0 +1,21 @@
+---
+#
+# Setup required repositories
+#
+- name: APT | Prepare Sury repository
+  import_tasks: setup-repositories.yml
+  when: ansible_facts['os_family'] == 'Debian' and php_sury_repository_enabled
+
+#
+# Setup all required packages
+#
+- name: APT | Updating the apt cache
+  apt:
+    update_cache: yes
+
+- name: APT | Setting up php packages
+  apt:
+    name: "{{ php_packages }}"
+    state: "{{ php_packages_mode }}"
+  notify: restart php-fpm
+  when: php_fpm_enabled

@@ -1,0 +1,19 @@
+galaxy_info:
+  author: MethorZ
+  description: Ansible PHP role for Debian (incl. Sury and multiple pool support)
+  company: MethorZ
+  license: license (BSD, MIT)
+  min_ansible_version: 2.5
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - development
+    - web
+    - php
+    - language
+    - fpm
+    - sury
+
+dependencies: []

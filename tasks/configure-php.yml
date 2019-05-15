@@ -1,0 +1,74 @@
+---
+#
+# Configure PHP FPM for usage
+#
+- block:
+  - name: FILE | Make sure the PHP conf and extension directory exists
+    file:
+      path: "{{ item }}"
+      state: directory
+      follow: true
+    with_flattened:
+      - "{{ php_conf_dirs }}"
+      - "{{ php_extension_conf_dirs }}"
+
+  - name: TEMPLATE | Copy managed php.ini template
+    template:
+      src: php.ini.j2
+      dest: "{{ item }}/php.ini"
+      owner: root
+      group: root
+      mode: 0644
+    with_items: "{{ php_conf_dirs }}"
+    notify: restart webserver
+    when: php_manage_ini_file
+
+  - name: STAT | Stat php_fpm_pool_dir_stat
+    stat:
+      path: "{{ php_fpm_pool_dir | dirname }}"
+    register: php_fpm_pool_dir_stat
+
+  - name: FILE | Create PHP FPM pool directory
+    file:
+      path: "{{ php_fpm_pool_dir | dirname }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+    when: php_fpm_pool_dir_stat.stat.islnk is not defined
+
+  - name: TEMPLATE | Copy managed PHP FPM conf template
+    template:
+      src: php-fpm-conf.j2
+      dest: "{{ php_default_fpm_conf }}"
+      owner: root
+      group: root
+      mode: 0644
+    notify: restart webserver
+
+  - name: TEMPLATE | Set up PHP FPM pools
+    template:
+      src: php-fpm-pool.j2
+      dest: "{{ php_fpm_pool_dir }}/{{ item.filename }}"
+      #validate: "{{ php_fpm_bin }} -t -y %s" # Bug: %s no such file
+    loop: "{{ php_fpm_pools }}"
+    notify: restart php-fpm
+
+  - name: SERVICE | Make sure PHP FPM starts on boot (non Debian)
+    service:
+      name: "{{ php_fpm_service }}"
+      state: started
+      enabled: true
+    when: ansible_facts['os_family'] != "Debian"
+
+  - name: Ensure php-fpm is started and enabled at boot (Debian).
+    service:
+      name: "{{ php_fpm_service }}"
+      state: started
+      enabled: true
+      use: service
+    when: ansible_facts['os_family'] == "Debian"
+
+  when: php_fpm_enabled
+
+

@@ -1,0 +1,19 @@
+---
+#
+# Handler to restart the php-fpm service
+#
+- name: restart php-fpm
+  service:
+    name: "{{ php_fpm_service }}"
+    state: restarted
+  when: php_fpm_enabled
+
+#
+# Handler to restart the configured webserver service
+#
+- name: restart webserver
+  service:
+    name: "{{ php_webserver_service }}"
+    state: restarted
+  notify: restart php-fpm
+  when: php_webserver_enabled
