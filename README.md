@@ -1,4 +1,4 @@
-Role Name
+ansible-php-role
 =========
 
 Ansible role to manage PHP FPM for Debian. Supports multiple pool configurations
@@ -61,10 +61,13 @@ php_fpm_log_level: notice
 
 # List of php fpm pools to be added with an example pool item
 php_fpm_pools:
+  # Pool configuration
   - name: poolname
     filename: tld.pool.conf
     user: user
     group: group
+    
+    # Listen configuration
     listen:
       address: "/run/php/php-{{ php_version }}-fpm-poolname.sock"
       backlog: 511
@@ -72,14 +75,18 @@ php_fpm_pools:
       group: "{{ php_user_group }}"
       mode: "0660"
       allowed_clients: 127.0.0.1
+      
+    # Process manager configuration
     pm:
       mode: dynamic
       max_children: 10
-      start_servers: 3 min_spare_servers + (max_spare_servers - min_spare_servers) / 2
+      start_servers: 3 # min_spare_servers + (max_spare_servers - min_spare_servers) / 2
       min_spare_servers: 1
       max_spare_servers: 3
       process_idle_timeout: 10s
       max_requests: 0
+      
+    # Environment variables
     env_vars: |
       ;env[HOSTNAME] = $HOSTNAME
       ;env[PATH] = /usr/local/bin:/usr/bin:/bin
@@ -184,7 +191,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: ansible-php-role }
+         - { role: methorz.ansible-php-role }
 
 License
 -------
@@ -194,4 +201,4 @@ BSD
 Author Information
 ------------------
 
-MethorZ
+https://twitter.com/methor_z

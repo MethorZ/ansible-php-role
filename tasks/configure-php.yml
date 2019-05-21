@@ -61,7 +61,7 @@
       enabled: true
     when: ansible_facts['os_family'] != "Debian"
 
-  - name: Ensure php-fpm is started and enabled at boot (Debian).
+  - name: SERVICE | Make sure PHP FPM is started and enabled at boot (Debian).
     service:
       name: "{{ php_fpm_service }}"
       state: started

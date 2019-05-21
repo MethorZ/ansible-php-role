@@ -1,14 +1,5 @@
 ---
 #
-# Inject all required variables
-#
-# The following variable lists are injected
-#
-# - defaults.yml: Default variables for all systems
-# - Debian.yml: Debian only related variables
-#
-
-#
 # Default OS specific variable definitions / defaults
 #
 - name: INCLUDE_VARS | OS specific vars
