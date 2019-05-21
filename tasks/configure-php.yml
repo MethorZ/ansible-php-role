@@ -70,5 +70,3 @@
     when: ansible_facts['os_family'] == "Debian"
 
   when: php_fpm_enabled
-
-
