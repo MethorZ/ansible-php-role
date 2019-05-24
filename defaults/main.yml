@@ -4,7 +4,7 @@
 ##
 
 # Install and enable php fpm
-php_fpm_enabled: true
+php_fpm_enabled: false
 
 # PHP version to install
 php_version: 7.3
@@ -44,6 +44,9 @@ php_fpm_log_level: notice
 #
 # PHP FPM pool configuration
 #
+
+# Removal of the defalt pool
+php_fpm_remove_default_pool: true
 
 # List of php fpm pools to be added
 php_fpm_pools: []

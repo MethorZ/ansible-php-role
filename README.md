@@ -59,6 +59,9 @@ php_fpm_log_level: notice
 # PHP FPM pool configuration
 #
 
+# Removal of the defalt pool
+php_fpm_remove_default_pool: true
+
 # List of php fpm pools to be added with an example pool item
 php_fpm_pools:
   # Pool configuration

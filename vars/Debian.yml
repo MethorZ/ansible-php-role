@@ -38,6 +38,8 @@ __php_fpm_ini: /etc/php/{{ php_version }}/fpm/php.ini
 __php_cli_ini: /etc/php/{{ php_version }}/cli/php.ini
 
 __php_fpm_pool_dir: /etc/php/{{ php_version }}/fpm/pool.d
+__php_fpm_default_pool: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+
 __php_default_fpm_sock: /var/run/php/php{{ php_version }}-fpm.sock
 
 __php_default_user_group: www-data

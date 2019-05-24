@@ -60,6 +60,11 @@
     php_cli_ini: "{{ __php_cli_ini }}"
     when: php_cli_ini is not defined
 
+- name: FACTS - Define default php-fpm pool
+  set_fact:
+    php_fpm_default_pool: "{{ __php_fpm_default_pool }}"
+    when: php_fpm_default_pool is not defined
+
 - name: FACTS - Define PHP FPM pool directory
   set_fact:
     php_fpm_pool_dir: "{{ __php_fpm_pool_dir }}"

@@ -37,6 +37,13 @@
       mode: 0755
     when: php_fpm_pool_dir_stat.stat.islnk is not defined
 
+  - name: FILE | Remove existing default pool
+    file:
+      path: "{{ php_fpm_default_pool }}"
+      state: absent
+    when: php_fpm_remove_default_pool
+    notify: restart php-fpm
+
   - name: TEMPLATE | Copy managed PHP FPM conf template
     template:
       src: php-fpm-conf.j2
