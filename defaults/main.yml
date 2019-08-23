@@ -9,6 +9,9 @@ php_fpm_enabled: false
 # PHP version to install
 php_version: 7.3
 
+# Install php as cli only (no additional setup required)
+php_cli_only: false
+
 # Run php fpm as daemon
 php_fpm_daemonize: "yes"
 
@@ -29,7 +32,7 @@ php_packages_mode: latest # present|latest
 php_sury_repository_enabled: true
 
 # Install additional php packages
-php_extra_packages: []
+php_packages_extra: []
 
 #
 # Error log configuration

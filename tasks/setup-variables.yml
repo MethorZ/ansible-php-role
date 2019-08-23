@@ -20,9 +20,19 @@
     php_packages: "{{ __php_packages | list }}"
   when: php_packages is not defined
 
+- name: FACTS - Define required php packages (cli mode)
+  set_fact:
+    php_cli_only_packages: "{{ __php_cli_only_packages | list }}"
+  when: php_cli_only_packages is not defined
+
 - name: FACTS - Define additional php packages
   set_fact:
     php_packages: "{{ php_packages | list + php_packages_extra | list }}"
+  when: php_packages_extra is defined
+
+- name: FACTS - Define additional php packages (cli mode)
+  set_fact:
+    php_cli_only_packages: "{{ php_cli_only_packages | list + php_packages_extra | list }}"
   when: php_packages_extra is defined
 
 - name: FACTS - Define PHP FPM daemon / service

@@ -13,9 +13,15 @@
   apt:
     update_cache: yes
 
-- name: APT | Setting up php packages
+- name: APT | Setting up php packages (non cli only mode)
   apt:
     name: "{{ php_packages }}"
     state: "{{ php_packages_mode }}"
   notify: restart php-fpm
-  when: php_fpm_enabled
+  when: php_fpm_enabled and not php_cli_only
+
+- name: APT | Setting up php packages (cli only mode)
+  apt:
+    name: "{{ php_cli_only_packages }}"
+    state: "{{ php_packages_mode }}"
+  when: php_fpm_enabled and php_cli_only

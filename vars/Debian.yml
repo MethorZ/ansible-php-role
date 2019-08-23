@@ -18,6 +18,9 @@ __php_packages:
   - "{{ php_package_prefix }}zip"
   - libpcre3-dev
 
+__php_cli_only_packages:
+  - "{{ php_package_prefix }}cli"
+
 #
 # General PHP FPM configuration
 #

@@ -76,4 +76,4 @@
       use: service
     when: ansible_facts['os_family'] == "Debian"
 
-  when: php_fpm_enabled
+  when: php_fpm_enabled and not php_cli_only
