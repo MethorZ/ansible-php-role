@@ -26,7 +26,7 @@ php_webserver_service: nginx
 #
 
 # Latest will install and update to latest versions, present will not update
-php_packages_mode: latest # present|latest
+php_packages_mode: present # present|latest
 
 # Add and use the sury repository (Debian only)
 php_sury_repository_enabled: true
