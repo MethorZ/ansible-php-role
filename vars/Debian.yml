@@ -8,6 +8,7 @@ __php_packages:
   - "{{ php_package_prefix }}cli"
   - "{{ php_package_prefix }}common"
   - "{{ php_package_prefix }}curl"
+  - "{{ php_package_prefix }}dev"
   - "{{ php_package_prefix }}fpm"
   - "{{ php_package_prefix }}intl"
   - "{{ php_package_prefix }}json"

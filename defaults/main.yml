@@ -136,3 +136,8 @@ php_opcache_consistency_checks: 0
 php_opcache_force_restart_timeout: 180
 php_opcache_error_log:
 php_opcache_log_verbosity_level: 1
+
+#
+# PHP extensions
+#
+php_enabled_extensions: []
