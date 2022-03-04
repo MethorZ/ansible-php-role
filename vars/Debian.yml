@@ -11,7 +11,6 @@ __php_packages:
   - "{{ php_package_prefix }}dev"
   - "{{ php_package_prefix }}fpm"
   - "{{ php_package_prefix }}intl"
-  - "{{ php_package_prefix }}json"
   - "{{ php_package_prefix }}mbstring"
   - "{{ php_package_prefix }}readline"
   - "{{ php_package_prefix }}soap"
