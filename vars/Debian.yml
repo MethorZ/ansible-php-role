@@ -2,49 +2,50 @@
 #
 # PHP packages and repository configuration
 #
-__php_sury_repository_enabled: true
-__php_package_prefix: "php{{ php_version }}-"
-__php_packages:
-  - "{{ php_package_prefix }}cli"
-  - "{{ php_package_prefix }}common"
-  - "{{ php_package_prefix }}curl"
-  - "{{ php_package_prefix }}dev"
-  - "{{ php_package_prefix }}fpm"
-  - "{{ php_package_prefix }}intl"
-  - "{{ php_package_prefix }}mbstring"
-  - "{{ php_package_prefix }}readline"
-  - "{{ php_package_prefix }}soap"
-  - "{{ php_package_prefix }}xml"
-  - "{{ php_package_prefix }}zip"
+__php_fpm_sury_repository_enabled: true
+__php_fpm_package_prefix: "php{{ php_fpm_version }}-"
+__php_fpm_packages:
+  - "{{ php_fpm_package_prefix }}bcmath"
+  - "{{ php_fpm_package_prefix }}cli"
+  - "{{ php_fpm_package_prefix }}common"
+  - "{{ php_fpm_package_prefix }}curl"
+  - "{{ php_fpm_package_prefix }}dev"
+  - "{{ php_fpm_package_prefix }}fpm"
+  - "{{ php_fpm_package_prefix }}intl"
+  - "{{ php_fpm_package_prefix }}mbstring"
+  - "{{ php_fpm_package_prefix }}readline"
+  - "{{ php_fpm_package_prefix }}soap"
+  - "{{ php_fpm_package_prefix }}xml"
+  - "{{ php_fpm_package_prefix }}zip"
   - libpcre3-dev
 
-__php_cli_only_packages:
-  - "{{ php_package_prefix }}cli"
+__php_fpm_cli_only_packages:
+  - "{{ php_fpm_package_prefix }}cli"
 
 #
 # General PHP FPM configuration
 #
-__php_fpm_service: php{{ php_version }}-fpm
-__php_fpm_bin: php{{ php_version }}-fpm
+__php_fpm_service: php{{ php_fpm_version }}-fpm
+__php_fpm_bin: php{{ php_fpm_version }}-fpm
 
-__php_conf_dirs:
-  - /etc/php/{{ php_version }}/fpm
-  - /etc/php/{{ php_version }}/cli
+__php_fpm_conf_dirs:
+  - /etc/php/{{ php_fpm_version }}/fpm
+  - /etc/php/{{ php_fpm_version }}/cli
 
-__php_extension_conf_dirs:
-  - /etc/php/{{ php_version }}/fpm/conf.d
-  - /etc/php/{{ php_version }}/cli/conf.d
+__php_fpm_extension_conf_dirs:
+  - /etc/php/{{ php_fpm_version }}/fpm/conf.d
+  - /etc/php/{{ php_fpm_version }}/cli/conf.d
 
-__php_default_fpm_conf: /etc/php/{{ php_version }}/fpm/php-fpm.conf
+__php_fpm_default_conf: /etc/php/{{ php_fpm_version }}/fpm/php-fpm.conf
 
-__php_fpm_ini: /etc/php/{{ php_version }}/fpm/php.ini
-__php_cli_ini: /etc/php/{{ php_version }}/cli/php.ini
+__php_fpm_ini: /etc/php/{{ php_fpm_version }}/fpm/php.ini
+__php_fpm_cli_ini: /etc/php/{{ php_fpm_version }}/cli/php.ini
 
-__php_fpm_pool_dir: /etc/php/{{ php_version }}/fpm/pool.d
-__php_fpm_default_pool: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+__php_fpm_pool_dir: /etc/php/{{ php_fpm_version }}/fpm/pool.d
+__php_fpm_default_pool: /etc/php/{{ php_fpm_version }}/fpm/pool.d/www.conf
 
-__php_default_fpm_sock: /var/run/php/php{{ php_version }}-fpm.sock
+__php_fpm_default_sock: /var/run/php/php{{ php_fpm_version }}-fpm.sock
 
-__php_default_user_group: www-data
+__php_fpm_default_user_group: www-data
 
-__php_fpm_pid: /run/php/php{{ php_version }}-fpm.pid
+__php_fpm_pid: /run/php/php{{ php_fpm_version }}-fpm.pid

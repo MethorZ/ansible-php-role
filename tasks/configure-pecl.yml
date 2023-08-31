@@ -1,0 +1,23 @@
+---
+#
+# Configuration and PECL usage
+#
+- block:
+
+  - name: COMMAND | Update PECL PHP Channel
+    command: pecl channel-update pecl.php.net
+    register: php_fpm_pecl_channel_update_result
+    changed_when: "not 'is up to date' in php_fpm_pecl_channel_update_result.stdout"
+    failed_when: php_fpm_pecl_channel_update_result.stderr != ''
+
+  - name: PEAR | Install defined PECL packages
+    community.general.pear:
+      name: "pecl/{{ item }}"
+      state: present
+    with_items: "{{ php_fpm_pecl_extensions }}"
+    notify:
+      - restart php-fpm
+
+  when:
+    - php_fpm_enabled
+    - php_fpm_pecl_extensions is defined

@@ -4,7 +4,7 @@
 #
 - name: APT | Prepare Sury repository
   import_tasks: setup-repositories.yml
-  when: ansible_facts['os_family'] == 'Debian' and php_sury_repository_enabled
+  when: ansible_facts['os_family'] == 'Debian' and php_fpm_sury_repository_enabled
 
 #
 # Setup all required packages
@@ -15,13 +15,13 @@
 
 - name: APT | Setting up php packages (non cli only mode)
   apt:
-    name: "{{ php_packages }}"
-    state: "{{ php_packages_mode }}"
+    name: "{{ php_fpm_packages }}"
+    state: "{{ php_fpm_packages_mode }}"
   notify: restart php-fpm
-  when: php_fpm_enabled and not php_cli_only
+  when: php_fpm_enabled and not php_fpm_cli_only
 
 - name: APT | Setting up php packages (cli only mode)
   apt:
-    name: "{{ php_cli_only_packages }}"
-    state: "{{ php_packages_mode }}"
-  when: php_fpm_enabled and php_cli_only
+    name: "{{ php_fpm_cli_only_packages }}"
+    state: "{{ php_fpm_packages_mode }}"
+  when: php_fpm_enabled and php_fpm_cli_only

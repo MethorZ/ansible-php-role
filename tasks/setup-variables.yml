@@ -7,33 +7,33 @@
 
 - name: FACTS - Define Sury repository usage
   set_fact:
-    php_sury_repository_enabled: "{{ __php_sury_repository_enabled }}"
-  when: php_sury_repository_enabled is not defined
+    php_fpm_sury_repository_enabled: "{{ __php_fpm_sury_repository_enabled }}"
+  when: php_fpm_sury_repository_enabled is not defined
 
 - name: FACTS - Define php package prefix
   set_fact:
-    php_package_prefix: "{{ __php_package_prefix }}"
-  when: php_package_prefix is not defined
+    php_fpm_package_prefix: "{{ __php_fpm_package_prefix }}"
+  when: php_fpm_package_prefix is not defined
 
 - name: FACTS - Define required php packages
   set_fact:
-    php_packages: "{{ __php_packages | list }}"
-  when: php_packages is not defined
+    php_fpm_packages: "{{ __php_fpm_packages | list }}"
+  when: php_fpm_packages is not defined
 
 - name: FACTS - Define required php packages (cli mode)
   set_fact:
-    php_cli_only_packages: "{{ __php_cli_only_packages | list }}"
-  when: php_cli_only_packages is not defined
+    php_fpm_cli_only_packages: "{{ __php_fpm_cli_only_packages | list }}"
+  when: php_fpm_cli_only_packages is not defined
 
 - name: FACTS - Define additional php packages
   set_fact:
-    php_packages: "{{ php_packages | list + php_packages_extra | list }}"
-  when: php_packages_extra is defined
+    php_fpm_packages: "{{ php_fpm_packages | list + php_fpm_packages_extra | list }}"
+  when: php_fpm_packages_extra is defined
 
 - name: FACTS - Define additional php packages (cli mode)
   set_fact:
-    php_cli_only_packages: "{{ php_cli_only_packages | list + php_packages_extra | list }}"
-  when: php_packages_extra is defined
+    php_fpm_cli_only_packages: "{{ php_fpm_cli_only_packages | list + php_fpm_packages_extra | list }}"
+  when: php_fpm_packages_extra is defined
 
 - name: FACTS - Define PHP FPM daemon / service
   set_fact:
@@ -47,18 +47,18 @@
 
 - name: FACTS - Define PHP conf directories
   set_fact:
-    php_conf_dirs: "{{ __php_conf_dirs }}"
-    when: php_conf_dirs is not defined
+    php_fpm_conf_dirs: "{{ __php_fpm_conf_dirs }}"
+    when: php_fpm_conf_dirs is not defined
 
 - name: FACTS - Define PHP extension conf directories
   set_fact:
-    php_extension_conf_dirs: "{{ __php_extension_conf_dirs }}"
-    when: php_extension_conf_dirs is not defined
+    php_fpm_extension_conf_dirs: "{{ __php_fpm_extension_conf_dirs }}"
+    when: php_fpm_extension_conf_dirs is not defined
 
 - name: FACTS - Define PHP FPM default conf
   set_fact:
-    php_default_fpm_conf: "{{ __php_default_fpm_conf }}"
-    when: php_default_fpm_conf is not defined
+    php_fpm_default_conf: "{{ __php_fpm_default_conf }}"
+    when: php_fpm_default_conf is not defined
 
 - name: FACTS - Define PHP FPM ini
   set_fact:
@@ -67,8 +67,8 @@
 
 - name: FACTS - Define PHP FPM cli ini
   set_fact:
-    php_cli_ini: "{{ __php_cli_ini }}"
-    when: php_cli_ini is not defined
+    php_fpm_cli_ini: "{{ __php_fpm_cli_ini }}"
+    when: php_fpm_cli_ini is not defined
 
 - name: FACTS - Define default php-fpm pool
   set_fact:
@@ -82,13 +82,13 @@
 
 - name: FACTS - Define PHP FPM sock
   set_fact:
-    php_fpm_sock: "{{ __php_default_fpm_sock }}"
+    php_fpm_sock: "{{ __php_fpm_default_sock }}"
     when: php_fpm_sock is not defined
 
 - name: FACTS - Define PHP FPM user group
   set_fact:
-    php_user_group: "{{ __php_default_user_group }}"
-    when: php_user_group is not defined
+    php_fpm_user_group: "{{ __php_fpm_default_user_group }}"
+    when: php_fpm_user_group is not defined
 
 - name: FACTS - Define PHP FPM pid
   set_fact:

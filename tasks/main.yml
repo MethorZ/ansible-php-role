@@ -14,6 +14,9 @@
     when: ansible_facts['os_family'] == 'Debian'
 
   - name: IMPORT_TASKS | Configure PHP FPM
+    import_tasks: configure-pecl.yml
+
+  - name: IMPORT_TASKS | Configure PHP FPM
     import_tasks: configure-php.yml
 
   when: php_fpm_enabled

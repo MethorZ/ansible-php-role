@@ -9,8 +9,8 @@
       state: directory
       follow: true
     with_flattened:
-      - "{{ php_conf_dirs }}"
-      - "{{ php_extension_conf_dirs }}"
+      - "{{ php_fpm_conf_dirs }}"
+      - "{{ php_fpm_extension_conf_dirs }}"
 
   - name: TEMPLATE | Copy managed php.ini template
     template:
@@ -19,9 +19,11 @@
       owner: root
       group: root
       mode: 0644
-    with_items: "{{ php_conf_dirs }}"
-    notify: restart webserver
-    when: php_manage_ini_file
+    with_items: "{{ php_fpm_conf_dirs }}"
+    notify:
+      - restart php-fpm
+      - restart webserver
+    when: php_fpm_manage_ini_file
 
   - name: STAT | Stat php_fpm_pool_dir_stat
     stat:
@@ -42,16 +44,20 @@
       path: "{{ php_fpm_default_pool }}"
       state: absent
     when: php_fpm_remove_default_pool
-    notify: restart php-fpm
+    notify:
+      - restart php-fpm
+      - restart webserver
 
   - name: TEMPLATE | Copy managed PHP FPM conf template
     template:
       src: php-fpm-conf.j2
-      dest: "{{ php_default_fpm_conf }}"
+      dest: "{{ php_fpm_default_conf }}"
       owner: root
       group: root
       mode: 0644
-    notify: restart webserver
+    notify:
+      - restart php-fpm
+      - restart webserver
 
   - name: TEMPLATE | Set up PHP FPM pools
     template:
@@ -59,7 +65,9 @@
       dest: "{{ php_fpm_pool_dir }}/{{ item.filename }}"
       #validate: "{{ php_fpm_bin }} -t -y %s" # Bug: %s no such file
     loop: "{{ php_fpm_pools }}"
-    notify: restart php-fpm
+    notify:
+      - restart php-fpm
+      - restart webserver
 
   - name: SERVICE | Make sure PHP FPM starts on boot (non Debian)
     service:
@@ -76,4 +84,4 @@
       use: service
     when: ansible_facts['os_family'] == "Debian"
 
-  when: php_fpm_enabled and not php_cli_only
+  when: php_fpm_enabled and not php_fpm_cli_only
