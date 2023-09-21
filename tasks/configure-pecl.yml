@@ -21,3 +21,4 @@
   when:
     - php_fpm_enabled
     - php_fpm_pecl_extensions is defined
+    - (php_fpm_pecl_extensions | length > 0)
