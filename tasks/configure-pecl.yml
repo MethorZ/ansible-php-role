@@ -15,6 +15,7 @@
       name: "pecl/{{ item }}"
       state: present
     with_items: "{{ php_fpm_pecl_extensions }}"
+    ignore_errors: true
     notify:
       - restart php-fpm
 
