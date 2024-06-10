@@ -98,7 +98,7 @@ php_fpm_pools:
 
     # Environment variables
     env_vars: |
-      env[APPLICATION_ENV] = production
+      env[ENVIRONMENT] = production
 
 #
 # PHP ini basic settings
